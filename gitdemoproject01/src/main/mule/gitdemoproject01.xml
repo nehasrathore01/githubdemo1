@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="22b110f6-0ff2-4fec-ac78-d58ee3c7589d" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<http:listener-config name="HTTP_Listener_config1" doc:name="HTTP Listener config" doc:id="aa0a0f24-5d6f-48d1-a667-2ac94c493624" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="gitdemoproject01Flow" doc:id="1abfd4bc-1531-47a9-a94d-70272146dd6d" >
+		<http:listener doc:name="Listener" doc:id="8049913f-e983-471a-bd6d-d704ab37d2ec" config-ref="HTTP_Listener_config1" path="/gitdemo01"/>
+		<logger level="INFO" doc:name="Logger" doc:id="68bda2ae-ec6e-4e1d-85b6-0662772f788e" message="---Git Demo 01---"/>
+	</flow>
+</mule>
