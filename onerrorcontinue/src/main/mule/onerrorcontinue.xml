@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:validation="http://www.mulesoft.org/schema/mule/validation" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/validation http://www.mulesoft.org/schema/mule/validation/current/mule-validation.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="b73012c4-72af-4735-8d56-534b51b20c35" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<validation:config name="Validation_Config" doc:name="Validation Config" doc:id="243493d3-0ea6-472a-bad7-47e8b9718da1" />
+	<flow name="defaulterrorHandler" doc:id="1704b0ee-7ac6-404a-8512-b89aaa1883e1" >
+		<http:listener doc:name="Listener" doc:id="f56c8bed-a793-465b-be9a-62432fcf00e6" config-ref="HTTP_Listener_config" path="oec"/>
+		<set-payload value="errors" doc:name="Set Payload" doc:id="71bd3da8-e326-4f5d-b6e7-9fbc5d1cd93a" />
+		<validation:is-number numberType="INTEGER" doc:name="Is number" doc:id="ddb23e90-f964-4f43-8537-f15956ad1289" config-ref="Validation_Config" value="#[payload]"/>
+		<logger level="INFO" doc:name="Logger" doc:id="46c4cf7d-0ac3-463c-a961-da9deb29e4d2" message="#[payload]"/>
+	</flow>
+</mule>
